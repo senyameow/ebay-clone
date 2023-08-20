@@ -15,12 +15,14 @@ export default function Home() {
       title: 'product 1',
       description: 'cool product buy it cool product buy it cool product buy it cool product buy it cool product buy it cool product buy it cool product buy it!',
       price: 2500,
+      url: '/images/pfp.jpg'
     },
     {
       id: 1,
       title: 'product 2',
       description: 'cool product buy it cool product buy it cool product buy it cool product buy it cool product buy it cool product buy it cool product buy it!',
       price: 1900,
+      url: '/images/pfp.jpg'
     },
   ]
 

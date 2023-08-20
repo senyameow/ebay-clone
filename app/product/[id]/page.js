@@ -1,6 +1,7 @@
 'use client'
 
 import MainLayout from '@/app/layouts/MainLayout'
+import SimilarProducts from '@/app/layouts/includes/SimilarProducts'
 import Image from 'next/image'
 import React from 'react'
 
@@ -52,6 +53,7 @@ const Product = ({params}) => {
                     </div>
                 </div>
             </div>
+            <SimilarProducts />
         </MainLayout>
     </>
   )
