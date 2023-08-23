@@ -11,25 +11,50 @@ datasource db {
 }
 
 model Addresses {
-  id        Int     @id @default(autoincrement())
-  user_id   String  @unique @db.Uuid
-  name      String
-  address   String
-  zipcode   String
-  city      String
-  country   String
+  id         Int       @id @default(autoincrement())
+  user_id    String    @unique @db.Uuid
+  name       String
+  address    String
+  zipcode    String
+  city       String
+  country    String
   created_at DateTime? @default(now()) @db.Timestamptz(6)
 }
 
 model Orders {
-  id        Int     @id @default(autoincrement())
-  user_id   String  @unique @db.Uuid
-  name      String
-  address   String
-  zipcode   String
-  city      String
-  country   String
-  total     Int
+  id         Int         @id @default(autoincrement())
+  user_id    String      @unique @db.Uuid
+  name       String
+  address    String
+  zipcode    String
+  city       String
+  country    String
+  total      Int
+  created_at DateTime?   @default(now()) @db.Timestamptz(6)
+  orderItem  OrderItem[] // 1 to many rel
+}
+
+// мы говорим: окей у нас есть колонка ордер айтем и этот ордер айтем из модели ордер айтем и их не один а список!
+
+// у нас есть заказ, в нем могут быть много айтемов (1 заказ - много айтемов) = 1 to many
+// у ордер айтема, есть колонка ордер, т.е. к какому ордеру этот айтем относится
+// также есть колонка продукт
+
+model OrderItem {
+  id         Int       @id @default(autoincrement())
+  order_id   Int
+  product_id Int
   created_at DateTime? @default(now()) @db.Timestamptz(6)
-  // orderItem OrderItem[] // 1 to many rel
+  order      Orders    @relation(fields: [order_id], references: [id])
+  product    Products  @relation(fields: [product_id], references: [id])
+}
+
+model Products {
+  id          Int         @id @default(autoincrement()) // обязательно
+  title       String // название
+  description String // описание
+  url         String // картинка
+  price       Int //цена
+  created_at  DateTime?   @default(now()) @db.Timestamptz(6) // полезно добавлять
+  OrderItem   OrderItem[] // relation
 }

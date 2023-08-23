@@ -4,6 +4,8 @@ import { ToastContainer } from 'react-toastify'
 // import 'react-toastify'
 
 import 'react-toastify/dist/ReactToastify.css';
+import UserProvider from './context/user';
+import CartProvider from './context/cart';
 
 
 export const metadata = {
@@ -16,7 +18,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <ToastContainer />
-        {children}
+        <UserProvider>
+          <CartProvider>
+            {children}
+          </CartProvider>
+        </UserProvider>
       </body>
     </html>
   )

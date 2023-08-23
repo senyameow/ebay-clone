@@ -2,10 +2,10 @@
 
 import Link from 'next/link'
 import React from 'react'
-import {BsChevronDown} from 'react-icons/bs'
+import { BsChevronDown } from 'react-icons/bs'
 import Image from 'next/image'
 
-import {AiOutlineShoppingCart} from 'react-icons/ai'
+import { AiOutlineShoppingCart } from 'react-icons/ai'
 
 
 const SubMenu = () => {
@@ -24,21 +24,21 @@ const SubMenu = () => {
         { id: 11, name: 'Sell' },
     ]
 
-  return (
-    <div id='TopMenu' className='border-b'>
-        <div className='flex items-center justify-between w-full mx-auto max-w-[1200px]'> {/* высота дива подстраивается под чилдренов */}
-            <ul className='h-8 flex items-center justify-center gap-6 mx-auto'>
-                {menuItems.map(item => (
-                    <li className='text-sm hover:text-blue-500 cursor-pointer hover:underline'>
-                        <Link href={`/${item.name}`}>
-                            {item.name}
-                        </Link>
-                    </li>
-                ))}
-            </ul>
+    return (
+        <div id='TopMenu' className='border-b'>
+            <div className='flex items-center justify-between w-full mx-auto max-w-[1200px]'> {/* высота дива подстраивается под чилдренов */}
+                <ul className='h-8 flex items-center justify-center gap-6 mx-auto'>
+                    {menuItems.map(item => (
+                        <li key={item.id} className='text-sm hover:text-blue-500 cursor-pointer hover:underline'>
+                            <Link href={`/${item.name}`}>
+                                {item.name}
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default SubMenu
