@@ -12,7 +12,7 @@ export async function GET() {
         // выход из призмы 
         await prisma.$disconnect()
         // возвращаем отджейсоненные продукты
-        return new NextResponse.json(products)
+        return NextResponse.json(products)
 
     } catch (error) {
         console.log(error)

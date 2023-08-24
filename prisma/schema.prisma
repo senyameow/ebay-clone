@@ -24,6 +24,7 @@ model Addresses {
 model Orders {
   id         Int         @id @default(autoincrement())
   user_id    String      @unique @db.Uuid
+  stripe_id  String
   name       String
   address    String
   zipcode    String

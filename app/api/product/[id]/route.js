@@ -34,7 +34,7 @@ export async function GET(req, context) {
 
 
         await prisma.$disconnect() // дисконектимся от призмы
-        return new NextResponse.json(res)
+        return NextResponse.json(product)
 
     } catch (error) {
         console.log(error)

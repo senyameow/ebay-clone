@@ -89,7 +89,9 @@ const TopMenu = () => {
                     </li>
                     <li className='px-3 hover:underline cursor-pointer'>
                         <div className='relative'>
-                            <AiOutlineShoppingCart size={22} />
+                            <Link href={'/cart'}>
+                                <AiOutlineShoppingCart size={22} />
+                            </Link>
 
                             {cart.cartCount() > 0 ? <div className='absolute text-[10px] -top-[2px] -right-[5px] w-[14px] h-[14px] bg-red-600 rounded-full text-white'>
                                 <span className='flex items-center justify-center -mt-[2px] text-[12px] font-semibold'>{cart.cartCount()}</span>

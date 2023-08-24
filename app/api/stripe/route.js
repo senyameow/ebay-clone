@@ -14,15 +14,15 @@ export async function POST(req) {
 
     try {
 
-        const { data: { user } } = supabase.auth.getUser()
+        const { data: { user } } = await supabase.auth.getUser()
 
-        if (!user) throw Error()
+        if (!user.id) throw Error()
 
         // будем записывать что-то в страйп, значит нужно все в бади запихнуть
 
         const body = await req.json()
 
-        const stripe = new Stripe(process.env.STRIPE_SK_KEY || '') // создаем страйп пихаем туда наш сикрет ключ
+        const stripe = new Stripe(process.env.STRIPE_SK_KEY) // создаем страйп пихаем туда наш сикрет ключ
 
         // какой респонс будет?
 

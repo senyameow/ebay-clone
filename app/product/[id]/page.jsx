@@ -1,23 +1,36 @@
 'use client'
 
 import { useCart } from '@/app/context/cart'
+import useIsLoading from '@/app/hooks/useIsLoading'
 import MainLayout from '@/app/layouts/MainLayout'
 import SimilarProducts from '@/app/layouts/includes/SimilarProducts'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 
 const Product = ({ params }) => {
 
     const cart = useCart()
 
-    const product = {
-        id: 0,
-        title: 'product 1',
-        description: 'cool product buy it cool product buy it cool product buy it cool product buy it cool product buy it cool product buy it cool product buy it!',
-        price: 2500,
-        url: 'https://crobux.ru/wp-content/uploads/f/6/2/f62af33ecb7597c792bae1563398b607.jpeg'
+    const [product, setProduct] = useState({}) // будем записывать продукт в стейт 
+
+    const getProduct = async () => {
+
+        useIsLoading(true)
+
+        const response = await fetch(`/api/product/${params.id}`)
+
+        const prod = await response.json()
+
+        setProduct(prod)
+        cart.isItemAddedToCart(prod)
+
+        useIsLoading(false)
     }
+
+    useEffect(() => {
+        getProduct()
+    }, [])
 
     const handleClick = () => {
         console.log(cart.isItemAdded)

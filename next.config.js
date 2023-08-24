@@ -3,7 +3,9 @@ const nextConfig = {
     images: {
         domains: [
             'crobux.ru',
-            'lh3.googleusercontent.com'
+            'lh3.googleusercontent.com',
+            'images.unsplash.com',
+            'plus.unsplash.com'
         ]
     }
 }

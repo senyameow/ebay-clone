@@ -16,8 +16,8 @@ const CartProvider = ({ children }) => {
         let cart = [] // создаем пустой список, куда будем добавлять вещи
         if (typeof localStorage !== 'undefined') {
 
+            cart = JSON.parse(localStorage.getItem('cart')) || []
         }
-        cart = JSON.parse(localStorage.getItem('cart')) || []
 
 
 
@@ -112,7 +112,6 @@ const CartProvider = ({ children }) => {
 
         }
 
-        console.log(cart.reduce((total, item) => total + item.price, 0))
         return cart.reduce((total, item) => total + item.price, 0)
     } // хороший кейс для юза редюсера
 

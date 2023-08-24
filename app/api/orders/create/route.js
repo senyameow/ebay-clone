@@ -15,7 +15,7 @@ export async function POST(req) {
         const { data: { user } } = await supabase.auth.getUser()
 
 
-        if (!user) throw Error() // it's gonna trigger catch block
+        if (!user.id) throw Error() // it's gonna trigger catch block
 
         // если юзер есть, то...
 
@@ -23,7 +23,7 @@ export async function POST(req) {
 
         const order = await prisma.orders.create({
             data: {
-                user_id: user.id,
+                user_id: user?.id,
                 stripe_id: body.stripe_id,
                 name: body.name,
                 address: body.address,
@@ -45,7 +45,7 @@ export async function POST(req) {
 
 
         await prisma.$disconnect() // дисконектимся от призмы
-        return new NextResponse.json('Order Complete', { status: 200 })
+        return NextResponse.json('Order Complete', { status: 200 })
 
     } catch (error) {
         console.log(error)

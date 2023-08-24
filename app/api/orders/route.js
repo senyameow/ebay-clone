@@ -22,7 +22,7 @@ export async function GET() {
         const orders = await prisma.orders.findMany({ where: { user_id: user.id }, orderBy: { id: 'desc' }, include: { orderItem: { include: { product: true } } } })
 
         await prisma.$disconnect() // дисконектимся от призмы
-        return new NextResponse.json(orders)
+        return NextResponse.json(orders)
 
     } catch (error) {
         console.log(error)
